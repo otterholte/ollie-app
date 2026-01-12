@@ -1,0 +1,176 @@
+{
+  "disclaimer": "If you are in immediate danger, please call emergency services (911 in the US) or go to your nearest emergency room.",
+  
+  "resources": {
+    "US": {
+      "country": "United States",
+      "primary": {
+        "name": "988 Suicide & Crisis Lifeline",
+        "phone": "988",
+        "description": "Free, confidential support 24/7 for people in suicidal crisis or emotional distress",
+        "url": "https://988lifeline.org",
+        "type": "phone"
+      },
+      "secondary": [
+        {
+          "name": "Crisis Text Line",
+          "phone": "741741",
+          "description": "Text HOME to 741741 to connect with a Crisis Counselor",
+          "url": "https://www.crisistextline.org",
+          "type": "text"
+        },
+        {
+          "name": "Veterans Crisis Line",
+          "phone": "988",
+          "description": "Press 1 after calling 988 for veterans",
+          "url": "https://www.veteranscrisisline.net",
+          "type": "phone",
+          "note": "Press 1 after dialing"
+        },
+        {
+          "name": "SAMHSA National Helpline",
+          "phone": "1-800-662-4357",
+          "description": "Treatment referrals and information, 24/7",
+          "url": "https://www.samhsa.gov/find-help/national-helpline",
+          "type": "phone"
+        },
+        {
+          "name": "Trevor Project",
+          "phone": "1-866-488-7386",
+          "description": "Crisis support for LGBTQ+ young people",
+          "url": "https://www.thetrevorproject.org",
+          "type": "phone"
+        },
+        {
+          "name": "Trans Lifeline",
+          "phone": "877-565-8860",
+          "description": "Support for transgender people",
+          "url": "https://translifeline.org",
+          "type": "phone"
+        }
+      ]
+    },
+    "UK": {
+      "country": "United Kingdom",
+      "primary": {
+        "name": "Samaritans",
+        "phone": "116 123",
+        "description": "Free, confidential support 24/7",
+        "url": "https://www.samaritans.org",
+        "type": "phone"
+      },
+      "secondary": [
+        {
+          "name": "Crisis Text Line UK",
+          "phone": "85258",
+          "description": "Text SHOUT to 85258",
+          "url": "https://giveusashout.org",
+          "type": "text"
+        },
+        {
+          "name": "Papyrus (Under 35)",
+          "phone": "0800 068 4141",
+          "description": "Prevention of young suicide",
+          "url": "https://www.papyrus-uk.org",
+          "type": "phone"
+        }
+      ]
+    },
+    "CA": {
+      "country": "Canada",
+      "primary": {
+        "name": "988 Suicide Crisis Helpline",
+        "phone": "988",
+        "description": "24/7 crisis support",
+        "url": "https://988.ca",
+        "type": "phone"
+      },
+      "secondary": [
+        {
+          "name": "Crisis Text Line Canada",
+          "phone": "686868",
+          "description": "Text HOME to 686868",
+          "url": "https://www.crisistextline.ca",
+          "type": "text"
+        },
+        {
+          "name": "Kids Help Phone",
+          "phone": "1-800-668-6868",
+          "description": "For young people",
+          "url": "https://kidshelpphone.ca",
+          "type": "phone"
+        }
+      ]
+    },
+    "AU": {
+      "country": "Australia",
+      "primary": {
+        "name": "Lifeline Australia",
+        "phone": "13 11 14",
+        "description": "24/7 crisis support",
+        "url": "https://www.lifeline.org.au",
+        "type": "phone"
+      },
+      "secondary": [
+        {
+          "name": "Beyond Blue",
+          "phone": "1300 22 4636",
+          "description": "Anxiety and depression support",
+          "url": "https://www.beyondblue.org.au",
+          "type": "phone"
+        },
+        {
+          "name": "Kids Helpline",
+          "phone": "1800 55 1800",
+          "description": "For young people",
+          "url": "https://kidshelpline.com.au",
+          "type": "phone"
+        }
+      ]
+    },
+    "NZ": {
+      "country": "New Zealand",
+      "primary": {
+        "name": "Lifeline New Zealand",
+        "phone": "0800 543 354",
+        "description": "24/7 crisis support",
+        "url": "https://www.lifeline.org.nz",
+        "type": "phone"
+      },
+      "secondary": [
+        {
+          "name": "Need to Talk?",
+          "phone": "1737",
+          "description": "Free call or text",
+          "url": "https://1737.org.nz",
+          "type": "phone"
+        }
+      ]
+    },
+    "international": {
+      "name": "International Association for Suicide Prevention",
+      "description": "Find crisis centers in your country",
+      "url": "https://www.iasp.info/resources/Crisis_Centres/",
+      "type": "website"
+    }
+  },
+  
+  "messages": {
+    "validation": "What you're feeling is real and difficult. You don't have to go through this alone.",
+    "encouragement": "Reaching out takes courage. These people want to help.",
+    "reminder": "If you're in immediate danger, please call emergency services.",
+    "notAlone": "Many people have felt this way and found help. You deserve support."
+  },
+  
+  "uiText": {
+    "title": "You're Not Alone",
+    "subtitle": "Help is available right now",
+    "callButton": "Call Now",
+    "textButton": "Text Now",
+    "visitButton": "Visit Website",
+    "moreResources": "More Resources",
+    "emergencyNote": "If you're in immediate danger, please call emergency services (911 in US)"
+  }
+}
+
+

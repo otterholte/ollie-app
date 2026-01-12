@@ -1,0 +1,938 @@
+# Ollie - Therapeutic Companion App Rules
+
+This document defines all coding standards, therapeutic knowledge, and design principles for Ollie, a calm, evidence-based mental health companion app.
+
+> **⚠️ IMPORTANT: Always read `PRODUCT_VISION.md` first.**  
+> That document defines the 3-Layer Experience Model (Right Now / Daily / Reflection) and how therapies are orchestrated invisibly. This rules file covers implementation details.
+
+---
+
+## 1. APP IDENTITY & THERAPEUTIC PHILOSOPHY
+
+### What Ollie IS
+- A calm, supportive companion that sits beside you
+- A tool for self-reflection and pattern recognition
+- A library of evidence-based therapeutic exercises
+- A habit and goal tracker with gentle accountability
+- A safe space for processing difficult emotions
+- A bridge to professional help, not a replacement
+
+### What Ollie IS NOT
+- A therapist, counselor, or medical provider
+- A crisis intervention service (though it provides resources)
+- A quick fix or cure
+- Preachy, motivational, or falsely positive
+- Judgmental or shame-inducing in any way
+
+### Ollie's Personality
+- **Calm**: Never urgent, pushy, or anxiety-inducing
+- **Warm**: Caring without being saccharine
+- **Patient**: No rushing, no pressure, no guilt
+- **Curious**: Asks questions to understand, not to judge
+- **Honest**: Acknowledges difficulty without toxic positivity
+- **Gentle**: Soft language, never harsh or critical
+- **Grounded**: Practical, realistic, not fluffy
+
+### Communication Style
+- Use "you might notice" instead of "you should"
+- Use "it makes sense that" to validate experiences
+- Avoid exclamation marks except in genuine celebration
+- Never use "just" (minimizing) - e.g., "just think positive"
+- Avoid absolute language ("always", "never", "everyone")
+- Phrase suggestions as invitations: "Would you like to try..."
+- Acknowledge difficulty: "This is hard" not "You've got this!"
+
+### Example Phrases
+GOOD:
+- "It sounds like you're carrying a lot right now."
+- "That makes sense given what you've been through."
+- "Would you like to try something that might help?"
+- "There's no wrong way to feel about this."
+- "You showed up today. That's something."
+
+BAD:
+- "Stay positive!"
+- "You just need to..."
+- "Everything happens for a reason!"
+- "Think about all you have to be grateful for!"
+- "You should feel better by now."
+
+---
+
+## 2. TARGET CONDITIONS & CONSIDERATIONS
+
+### ADHD
+**Core challenges**: Executive dysfunction, time blindness, emotional dysregulation, rejection sensitivity, inconsistent motivation
+**Helpful approaches**:
+- Break tasks into tiny steps (body doubling concept)
+- External structure and accountability
+- Novelty and variety in tools
+- Dopamine menu concept
+- Habit stacking
+- Time blocking with timers
+- Celebration of effort, not just completion
+**Avoid**: Long text walls, complex multi-step processes, guilt about inconsistency
+
+### BPD (Borderline Personality Disorder)
+**Core challenges**: Emotional intensity, fear of abandonment, identity instability, impulsivity, relationship difficulties
+**Helpful approaches**:
+- DBT skills (distress tolerance, emotion regulation)
+- Diary cards for pattern tracking
+- Mentalization exercises
+- Schema awareness
+- Grounding techniques
+- Opposite action
+**Avoid**: Invalidating emotions, abandonment triggers, black-and-white framing
+
+### OCD
+**Core challenges**: Intrusive thoughts, compulsive behaviors, uncertainty intolerance, magical thinking
+**Helpful approaches**:
+- ERP (Exposure and Response Prevention) tracking
+- Uncertainty tolerance exercises
+- Cognitive defusion (ACT)
+- Values-based motivation
+- Response prevention logging
+**Avoid**: Reassurance-seeking features, compulsion-enabling tools, certainty promises
+
+### Body Dysmorphia
+**Core challenges**: Distorted body perception, appearance preoccupation, avoidance behaviors, mirror checking
+**Helpful approaches**:
+- Values clarification (life beyond appearance)
+- Cognitive defusion from appearance thoughts
+- Behavioral experiments
+- Mirror exposure (carefully structured)
+- Self-compassion practices
+**Avoid**: Body-focused tracking, weight/measurement features, before/after concepts
+
+### Anxiety
+**Core challenges**: Excessive worry, physical symptoms, avoidance, catastrophizing, need for control
+**Helpful approaches**:
+- Grounding techniques (5-4-3-2-1)
+- Worry time scheduling
+- Thought records
+- Exposure hierarchies
+- Breathing exercises
+- Mindfulness
+**Avoid**: Avoidance-enabling features, excessive reassurance, panic-inducing design
+
+### Depression
+**Core challenges**: Low mood, anhedonia, fatigue, negative thinking, withdrawal, hopelessness
+**Helpful approaches**:
+- Behavioral activation (tiny actions)
+- Activity scheduling
+- Thought records
+- Pleasant activity logging
+- Achievement tracking (very low bar)
+- Sleep hygiene
+**Avoid**: Pressure to feel better, toxic positivity, guilt-inducing streaks
+
+### Self-Loathing & Core Beliefs
+**Core challenges**: Deeply held negative self-beliefs, shame, self-criticism, perfectionism
+**Helpful approaches**:
+- Schema identification
+- Core belief worksheets
+- Self-compassion exercises
+- Evidence gathering (against beliefs)
+- Inner critic work
+- Compassionate self-talk practice
+**Avoid**: Affirmation-forcing, invalidating pain, quick fixes
+
+---
+
+## 3. THERAPEUTIC FRAMEWORKS
+
+### CBT (Cognitive Behavioral Therapy)
+**Core principle**: Thoughts, feelings, and behaviors are interconnected; changing one affects others.
+
+**Key techniques for the app**:
+- Thought Records: Situation → Emotion → Automatic Thought → Evidence For/Against → Balanced Thought
+- Cognitive Distortions identification (all-or-nothing, catastrophizing, mind-reading, etc.)
+- Behavioral Experiments: Testing beliefs through action
+- Activity Scheduling: Planning pleasant and mastery activities
+- Exposure Hierarchies: Gradual approach to feared situations
+
+### DBT (Dialectical Behavior Therapy)
+**Core principle**: Balance acceptance and change; build a life worth living.
+
+**Four modules**:
+1. **Distress Tolerance**: Survive crises without making them worse
+   - TIPP (Temperature, Intense exercise, Paced breathing, Progressive relaxation)
+   - STOP (Stop, Take a step back, Observe, Proceed mindfully)
+   - Pros and Cons
+   - Radical Acceptance
+   - Distraction techniques (ACCEPTS)
+
+2. **Emotion Regulation**: Understand and manage emotions
+   - PLEASE skills (treat PhysicaL illness, balanced Eating, avoid mood-Altering drugs, balanced Sleep, Exercise)
+   - Opposite Action
+   - Check the Facts
+   - Build Mastery
+   - Cope Ahead
+
+3. **Interpersonal Effectiveness**: Ask for needs, say no, maintain relationships
+   - DEAR MAN (Describe, Express, Assert, Reinforce, Mindful, Appear confident, Negotiate)
+   - GIVE (Gentle, Interested, Validate, Easy manner)
+   - FAST (Fair, no Apologies, Stick to values, Truthful)
+
+4. **Mindfulness**: Present-moment awareness
+   - What skills: Observe, Describe, Participate
+   - How skills: Non-judgmentally, One-mindfully, Effectively
+
+**Diary Card**: Daily tracking of emotions, urges, skills used
+
+### ACT (Acceptance and Commitment Therapy)
+**Core principle**: Psychological flexibility through acceptance and values-based action.
+
+**The Hexaflex (6 core processes)**:
+1. **Acceptance**: Making room for difficult experiences
+2. **Cognitive Defusion**: Unhooking from thoughts
+3. **Present Moment**: Being here now
+4. **Self-as-Context**: The observing self
+5. **Values**: What matters most
+6. **Committed Action**: Taking steps aligned with values
+
+**Key techniques**:
+- Values clarification exercises
+- Defusion techniques ("I'm having the thought that...")
+- Willingness exercises
+- Mindful acceptance practices
+- Committed action planning
+
+### MBCT (Mindfulness-Based Cognitive Therapy)
+**Core principle**: Mindful awareness prevents depressive relapse by changing relationship to thoughts.
+
+**Key techniques**:
+- Body Scan meditation
+- 3-Minute Breathing Space
+- Mindful Movement
+- Sitting Meditation
+- Thoughts as mental events (not facts)
+- Recognizing warning signs
+- Relapse prevention planning
+
+### MBT (Mentalization-Based Therapy)
+**Core principle**: Understanding mental states in self and others improves emotional regulation.
+
+**Key techniques**:
+- Affect identification and labeling
+- Perspective-taking exercises
+- "What might they be thinking/feeling?"
+- Recognizing when mentalization breaks down
+- Slowing down to reflect
+- Exploring different interpretations
+
+### Schema Therapy
+**Core principle**: Early maladaptive schemas drive patterns; healing comes through limited reparenting and mode work.
+
+**18 Early Maladaptive Schemas** (grouped by domain):
+1. Disconnection/Rejection: Abandonment, Mistrust/Abuse, Emotional Deprivation, Defectiveness/Shame, Social Isolation
+2. Impaired Autonomy: Dependence, Vulnerability, Enmeshment, Failure
+3. Impaired Limits: Entitlement, Insufficient Self-Control
+4. Other-Directedness: Subjugation, Self-Sacrifice, Approval-Seeking
+5. Overvigilance: Negativity, Emotional Inhibition, Unrelenting Standards, Punitiveness
+
+**Schema Modes**:
+- Child modes (Vulnerable, Angry, Impulsive, Happy)
+- Dysfunctional Coping modes (Compliant Surrenderer, Detached Protector, Overcompensator)
+- Dysfunctional Parent modes (Punitive, Demanding)
+- Healthy Adult mode (goal)
+
+### Compassion-Focused Therapy (CFT) / Self-Compassion
+**Core principle**: Self-compassion activates the soothing system and counters shame.
+
+**Three components of self-compassion** (Kristin Neff):
+1. Self-kindness vs. self-judgment
+2. Common humanity vs. isolation
+3. Mindfulness vs. over-identification
+
+**Key techniques**:
+- Compassionate self-talk
+- Self-compassion break
+- Loving-kindness meditation
+- Compassionate letter writing
+- Compassionate imagery
+- Soothing touch
+
+### Mindfulness Techniques
+**Grounding exercises**:
+- 5-4-3-2-1 (senses)
+- Body scan
+- Breath counting
+- Feet on floor
+- Cold water/ice
+
+**Meditation types**:
+- Breath awareness
+- Body scan
+- Loving-kindness (Metta)
+- Open awareness
+- Walking meditation
+
+**Informal mindfulness**:
+- Mindful eating
+- Mindful walking
+- Single-tasking
+- Noticing anchors
+
+---
+
+## 4. SAFETY & CRISIS PROTOCOLS
+
+### Crisis Detection Keywords
+Monitor for phrases indicating crisis:
+- Suicidal ideation: "want to die", "end it", "no point", "better off without me", "can't go on"
+- Self-harm: "hurt myself", "cutting", "burning", "punishing myself"
+- Severe distress: "can't take it", "breaking down", "losing it"
+
+### Crisis Response Flow
+1. Acknowledge distress with validation
+2. Immediately show crisis resources
+3. Offer grounding tool
+4. Encourage professional help
+5. Never leave user without options
+
+### Required Crisis Resources
+Always accessible, never more than 2 taps away:
+- 988 Suicide & Crisis Lifeline (US)
+- Crisis Text Line: Text HOME to 741741
+- International Association for Suicide Prevention: https://www.iasp.info/resources/Crisis_Centres/
+- Local emergency services reminder
+
+### Disclaimer Requirements
+- Onboarding: Clear statement that Ollie is not therapy
+- Tool screens: "This is a self-help tool, not professional treatment"
+- Crisis screens: "If you're in danger, please contact emergency services"
+
+---
+
+## 5. TECHNICAL STANDARDS
+
+### TypeScript Conventions
+```typescript
+// Use strict TypeScript
+// No `any` types - use `unknown` and narrow
+// Prefer interfaces over types for objects
+// Use const assertions for literals
+// Always define return types for functions
+
+// Good
+interface CheckIn {
+  id: string;
+  timestamp: Date;
+  mood: MoodLevel;
+  notes?: string;
+}
+
+const createCheckIn = (mood: MoodLevel, notes?: string): CheckIn => {
+  return {
+    id: generateId(),
+    timestamp: new Date(),
+    mood,
+    notes,
+  };
+};
+
+// Bad
+const createCheckIn = (mood: any, notes: any) => {
+  return { id: generateId(), timestamp: new Date(), mood, notes };
+};
+```
+
+### File Naming
+- Components: `PascalCase.tsx` (e.g., `MoodPicker.tsx`)
+- Hooks: `useCamelCase.ts` (e.g., `useCheckIn.ts`)
+- Utilities: `camelCase.ts` (e.g., `formatDate.ts`)
+- Types: `camelCase.types.ts` (e.g., `checkIn.types.ts`)
+- Constants: `camelCase.constants.ts` (e.g., `colors.constants.ts`)
+- Stores: `camelCaseStore.ts` (e.g., `checkInStore.ts`)
+
+### Component Structure
+```typescript
+// 1. Imports (external, then internal, then types)
+import { View, Text } from 'react-native';
+import Animated from 'react-native-reanimated';
+
+import { Button } from '@/components/Button';
+import { useTheme } from '@/hooks/useTheme';
+
+import type { MoodLevel } from '@/types/mood.types';
+
+// 2. Types/Interfaces
+interface MoodPickerProps {
+  value: MoodLevel;
+  onChange: (mood: MoodLevel) => void;
+  disabled?: boolean;
+}
+
+// 3. Component
+export const MoodPicker = ({ value, onChange, disabled = false }: MoodPickerProps) => {
+  // Hooks first
+  const theme = useTheme();
+  
+  // State
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Effects
+  useEffect(() => {
+    // ...
+  }, []);
+  
+  // Handlers
+  const handleSelect = (mood: MoodLevel) => {
+    onChange(mood);
+    setIsOpen(false);
+  };
+  
+  // Render
+  return (
+    <View>
+      {/* ... */}
+    </View>
+  );
+};
+```
+
+### State Management (Zustand)
+```typescript
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+interface CheckInState {
+  checkIns: CheckIn[];
+  addCheckIn: (checkIn: Omit<CheckIn, 'id' | 'timestamp'>) => void;
+  getCheckInsByDate: (date: Date) => CheckIn[];
+}
+
+export const useCheckInStore = create<CheckInState>()(
+  persist(
+    (set, get) => ({
+      checkIns: [],
+      addCheckIn: (data) => {
+        const checkIn: CheckIn = {
+          id: generateId(),
+          timestamp: new Date(),
+          ...data,
+        };
+        set((state) => ({ checkIns: [...state.checkIns, checkIn] }));
+      },
+      getCheckInsByDate: (date) => {
+        return get().checkIns.filter(c => isSameDay(c.timestamp, date));
+      },
+    }),
+    {
+      name: 'ollie-checkins',
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
+```
+
+### Import Aliases
+Configure in `tsconfig.json`:
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@features/*": ["src/features/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@stores/*": ["src/stores/*"],
+      "@utils/*": ["src/utils/*"],
+      "@constants/*": ["src/constants/*"],
+      "@types/*": ["src/types/*"]
+    }
+  }
+}
+```
+
+### Error Handling
+```typescript
+// Use Result pattern for operations that can fail
+type Result<T, E = Error> = 
+  | { success: true; data: T }
+  | { success: false; error: E };
+
+// Wrap async operations
+const safeAsync = async <T>(
+  operation: () => Promise<T>
+): Promise<Result<T>> => {
+  try {
+    const data = await operation();
+    return { success: true, data };
+  } catch (error) {
+    return { success: false, error: error as Error };
+  }
+};
+```
+
+---
+
+## 6. DESIGN SYSTEM
+
+### Color Palette
+```typescript
+// Calming, nature-inspired palette
+export const colors = {
+  // Primary - Soft sage green (grounding, natural)
+  primary: {
+    50: '#f0f5f1',
+    100: '#d9e6db',
+    200: '#b8d0bc',
+    300: '#8fb596',
+    400: '#6a9b74',
+    500: '#4a7c54', // Main
+    600: '#3d6645',
+    700: '#325238',
+    800: '#28422d',
+    900: '#1e3122',
+  },
+  
+  // Secondary - Warm sand (comfort, safety)
+  secondary: {
+    50: '#faf8f5',
+    100: '#f2ede5',
+    200: '#e8dfd0',
+    300: '#d9c9b0',
+    400: '#c9b08d',
+    500: '#b89b6a', // Main
+    600: '#a08455',
+    700: '#846c45',
+    800: '#6b5739',
+    900: '#57472f',
+  },
+  
+  // Accent - Soft lavender (calm, gentle)
+  accent: {
+    50: '#f5f3f7',
+    100: '#e8e3ee',
+    200: '#d4c9e0',
+    300: '#b8a5ca',
+    400: '#9c82b4',
+    500: '#7f5f9e', // Main
+    600: '#6b4d87',
+    700: '#573e6e',
+    800: '#463258',
+    900: '#382848',
+  },
+  
+  // Neutrals - Warm grays
+  neutral: {
+    50: '#fafaf9',
+    100: '#f5f5f3',
+    200: '#e8e8e5',
+    300: '#d4d4cf',
+    400: '#a8a8a0',
+    500: '#787872',
+    600: '#5c5c57',
+    700: '#454542',
+    800: '#2e2e2c',
+    900: '#1a1a19',
+  },
+  
+  // Semantic
+  success: '#6b9b6e',
+  warning: '#c9a85a',
+  error: '#b86b6b',
+  info: '#6b8ab8',
+  
+  // Backgrounds
+  background: {
+    primary: '#fafaf9',
+    secondary: '#f5f5f3',
+    tertiary: '#e8e8e5',
+  },
+  
+  // Text
+  text: {
+    primary: '#2e2e2c',
+    secondary: '#5c5c57',
+    tertiary: '#787872',
+    inverse: '#fafaf9',
+  },
+} as const;
+```
+
+### Typography
+```typescript
+export const typography = {
+  // Font families (use system fonts that feel warm)
+  fonts: {
+    regular: 'System',
+    medium: 'System',
+    semibold: 'System',
+    // Consider: Nunito, Lato, or Source Sans Pro for custom
+  },
+  
+  // Sizes - generous for readability
+  sizes: {
+    xs: 12,
+    sm: 14,
+    base: 16,
+    lg: 18,
+    xl: 20,
+    '2xl': 24,
+    '3xl': 30,
+    '4xl': 36,
+  },
+  
+  // Line heights - spacious for calm reading
+  lineHeights: {
+    tight: 1.25,
+    normal: 1.5,
+    relaxed: 1.75,
+    loose: 2,
+  },
+  
+  // Letter spacing
+  letterSpacing: {
+    tight: -0.5,
+    normal: 0,
+    wide: 0.5,
+  },
+} as const;
+```
+
+### Spacing
+```typescript
+// 4px base unit - generous spacing for calm feel
+export const spacing = {
+  0: 0,
+  1: 4,
+  2: 8,
+  3: 12,
+  4: 16,
+  5: 20,
+  6: 24,
+  8: 32,
+  10: 40,
+  12: 48,
+  16: 64,
+  20: 80,
+  24: 96,
+} as const;
+```
+
+### Border Radius
+```typescript
+export const borderRadius = {
+  none: 0,
+  sm: 4,
+  base: 8,
+  md: 12,
+  lg: 16,
+  xl: 24,
+  full: 9999,
+} as const;
+```
+
+### Shadows
+```typescript
+// Soft, subtle shadows
+export const shadows = {
+  sm: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  base: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  md: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+} as const;
+```
+
+### Animation Guidelines
+```typescript
+// All animations should be:
+// - Slow and gentle (never snappy or bouncy)
+// - Ease-out or ease-in-out (never linear or ease-in)
+// - Subtle (small movements, gentle fades)
+
+export const animation = {
+  // Durations (ms)
+  duration: {
+    instant: 100,
+    fast: 200,
+    normal: 300,
+    slow: 500,
+    gentle: 800,
+  },
+  
+  // Easings - prefer gentle curves
+  easing: {
+    gentle: [0.4, 0, 0.2, 1], // Ease out
+    smooth: [0.4, 0, 0.6, 1], // Ease in-out
+    soft: [0.22, 1, 0.36, 1], // Ease out expo (very gentle)
+  },
+  
+  // Spring configs for Reanimated
+  spring: {
+    gentle: {
+      damping: 20,
+      stiffness: 90,
+      mass: 1,
+    },
+    soft: {
+      damping: 25,
+      stiffness: 70,
+      mass: 1,
+    },
+  },
+} as const;
+
+// NEVER use:
+// - Bouncy springs
+// - Fast/snappy animations
+// - Jarring transitions
+// - Excessive motion
+```
+
+### Haptics
+```typescript
+// Use sparingly and gently
+export const haptics = {
+  // Light feedback for selections
+  selection: 'selection', // Haptics.selectionAsync()
+  
+  // For completing actions
+  success: 'notificationSuccess', // Haptics.notificationAsync(Success)
+  
+  // For errors (use rarely)
+  error: 'notificationWarning', // Haptics.notificationAsync(Warning)
+  
+  // NEVER use heavy/rigid impacts
+} as const;
+```
+
+---
+
+## 7. ACCESSIBILITY REQUIREMENTS (NON-NEGOTIABLE)
+
+### Touch Targets
+- Minimum size: 48x48 points
+- Adequate spacing between targets
+- Consider thumb reach zones
+
+### Screen Reader Support
+```typescript
+// All interactive elements need accessibility labels
+<Pressable
+  accessibilityRole="button"
+  accessibilityLabel="Log your mood"
+  accessibilityHint="Opens the mood logging screen"
+>
+  <Icon name="mood" />
+</Pressable>
+
+// Images need descriptions
+<Image
+  source={ollieImage}
+  accessibilityLabel="Ollie, your companion, looking calm and supportive"
+/>
+
+// Live regions for dynamic content
+<View accessibilityLiveRegion="polite">
+  <Text>{statusMessage}</Text>
+</View>
+```
+
+### Reduced Motion
+```typescript
+import { useReducedMotion } from 'react-native-reanimated';
+
+const Component = () => {
+  const reducedMotion = useReducedMotion();
+  
+  // Skip or simplify animations when reduced motion is enabled
+  const animationDuration = reducedMotion ? 0 : 300;
+};
+```
+
+### Color Contrast
+- Minimum 4.5:1 for normal text
+- Minimum 3:1 for large text and UI elements
+- Never rely on color alone to convey information
+
+### Text Scaling
+- Support Dynamic Type / system font scaling
+- Test at 200% text size
+- Ensure layouts don't break with large text
+
+### Focus Management
+- Logical focus order
+- Visible focus indicators
+- Focus trap in modals
+
+---
+
+## 8. APP STORE COMPLIANCE
+
+### Required Elements
+1. **Privacy Policy URL**: Must be accessible
+2. **Terms of Service**: Must be accessible
+3. **Crisis Resources**: Always visible/accessible
+4. **Data Deletion**: User can delete all data
+5. **Age Rating**: 12+ or 17+ (depending on content)
+6. **Disclaimers**: Not medical advice, not therapy replacement
+
+### Required Disclaimers
+Place in:
+- Onboarding flow
+- Settings/About screen
+- Footer of therapeutic tools
+
+```
+Ollie is a self-help tool designed to support your wellbeing. 
+It is not a substitute for professional mental health treatment. 
+If you're experiencing a mental health emergency, please contact 
+your local emergency services or a crisis helpline.
+```
+
+### Health Data Handling
+- Local storage by default (privacy-first)
+- Encrypted sensitive data (SecureStore)
+- Clear data export mechanism
+- Clear data deletion mechanism
+- No third-party analytics without consent
+- No selling or sharing of health data
+
+### Content Guidelines
+- No medical claims
+- No promises of cure or specific outcomes
+- No diagnosis features
+- Suicide/self-harm content handled per platform guidelines
+- Crisis resources always available
+
+---
+
+## 9. PROJECT STRUCTURE
+
+```
+src/
+├── app/                    # Expo Router screens
+│   ├── (tabs)/            # Tab navigator
+│   │   ├── index.tsx      # Home/Today
+│   │   ├── tools.tsx      # Therapeutic tools
+│   │   ├── habits.tsx     # Habit tracking
+│   │   └── reflect.tsx    # Reflections
+│   ├── check-in/          # Check-in flow
+│   ├── tool/              # Individual tool screens
+│   └── settings/          # Settings screens
+├── components/            # Shared components
+│   ├── ui/               # Base UI (Button, Card, Input)
+│   ├── feedback/         # Feedback components
+│   └── companion/        # Ollie companion
+├── features/             # Feature modules
+│   ├── check-ins/        # Daily check-ins
+│   ├── habits/           # Habit tracking
+│   ├── goals/            # Goal setting
+│   ├── tools/            # Therapeutic tools
+│   │   ├── cbt/         # CBT tools
+│   │   ├── dbt/         # DBT tools
+│   │   ├── act/         # ACT tools
+│   │   ├── mindfulness/ # Mindfulness tools
+│   │   └── gratitude/   # Gratitude tools
+│   ├── reflections/      # Pattern reflection
+│   └── crisis/           # Crisis resources
+├── stores/               # Zustand stores
+├── hooks/                # Custom hooks
+├── utils/                # Utilities
+├── constants/            # Design tokens, config
+├── types/                # TypeScript types
+└── knowledge/            # Embedded therapeutic content
+```
+
+---
+
+## 10. FEATURE IMPLEMENTATION PATTERNS
+
+### Check-In Flow
+1. How are you feeling? (mood scale, not forced happy)
+2. What's present for you? (optional - emotions, body, thoughts)
+3. Anything you want to note? (free text, optional)
+4. Gentle suggestion based on input
+5. Never mandatory, never guilt-inducing
+
+### Tool Suggestions
+- Based on current state, not forced
+- Always optional: "You might find this helpful..."
+- Variety: don't repeat same suggestion
+- Match intensity to state (crisis = grounding, not deep work)
+
+### Habit Tracking
+- No streaks (avoid shame)
+- "Days practiced" not "streak"
+- Celebrate showing up, not perfection
+- Easy to skip without guilt
+- Reset without penalty
+
+### Progress Visualization
+- Focus on patterns, not performance
+- No judgmental comparisons
+- Gentle insights: "You've been checking in more in the mornings"
+- Never: "You missed 3 days!"
+
+---
+
+## 11. TESTING APPROACH
+
+### What to Test
+- Crisis detection keywords (critical)
+- Accessibility (screen reader, focus)
+- Data persistence
+- State management
+- Navigation flows
+
+### How to Test Tone
+Read all user-facing text and ask:
+- Would this make someone in distress feel worse?
+- Does this put pressure on the user?
+- Is there any implied judgment?
+- Would someone having a hard day feel supported?
+
+---
+
+## 12. COMMON MISTAKES TO AVOID
+
+### UX Anti-Patterns
+- ❌ Streak counters that cause shame
+- ❌ Notifications that create guilt
+- ❌ Before/after comparisons
+- ❌ Leaderboards or social comparison
+- ❌ "Gamification" that exploits
+- ❌ Forced positivity prompts
+- ❌ Complex onboarding when user is struggling
+
+### Technical Anti-Patterns
+- ❌ Sending mental health data to external servers
+- ❌ Analytics on therapeutic content usage
+- ❌ Social sharing of private reflections
+- ❌ Subscription paywalls on crisis resources
+- ❌ Ads in any form
+
+### Therapeutic Anti-Patterns
+- ❌ Diagnosing users
+- ❌ Promising specific outcomes
+- ❌ Replacing professional help
+- ❌ Ignoring crisis signals
+- ❌ One-size-fits-all approaches
+
+---
+
+This document should be referenced for all development decisions on Ollie. When in doubt, ask: "Does this help someone who's struggling feel supported, not judged?"
+
