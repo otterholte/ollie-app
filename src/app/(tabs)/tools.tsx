@@ -15,6 +15,7 @@ interface Tool {
 }
 
 const tools: Tool[] = [
+  // === GROUNDING ===
   {
     id: 'breathing',
     name: 'Breathe',
@@ -32,6 +33,66 @@ const tools: Tool[] = [
     category: 'grounding',
   },
   {
+    id: 'body-scan',
+    name: 'Body scan',
+    description: 'Notice where tension lives',
+    emoji: '🫁',
+    duration: '5 min',
+    category: 'grounding',
+  },
+  {
+    id: 'cold-water',
+    name: 'Cold reset',
+    description: 'TIPP skill: cold water to calm fast',
+    emoji: '🧊',
+    duration: '30 sec',
+    category: 'grounding',
+  },
+  
+  // === DISTRESS TOLERANCE ===
+  {
+    id: 'urge-surfing',
+    name: 'Surf the urge',
+    description: 'Watch it rise and fall',
+    emoji: '🌊',
+    duration: '5-10 min',
+    category: 'distress',
+  },
+  {
+    id: 'tipp',
+    name: 'TIPP',
+    description: 'Temperature, intense exercise, paced breathing, progressive relaxation',
+    emoji: '⚡',
+    duration: '5-10 min',
+    category: 'distress',
+  },
+  {
+    id: 'stop-skill',
+    name: 'STOP',
+    description: 'Stop, take a step back, observe, proceed mindfully',
+    emoji: '🛑',
+    duration: '1 min',
+    category: 'distress',
+  },
+  {
+    id: 'radical-acceptance',
+    name: 'Radical acceptance',
+    description: 'Fighting reality makes pain worse',
+    emoji: '🕊️',
+    duration: '5 min',
+    category: 'distress',
+  },
+  {
+    id: 'pros-cons',
+    name: 'Pros & cons',
+    description: 'Acting on urge vs. resisting it',
+    emoji: '⚖️',
+    duration: '3-5 min',
+    category: 'distress',
+  },
+  
+  // === THOUGHT WORK ===
+  {
     id: 'thought-naming',
     name: 'Name the thought',
     description: 'Label it, don\'t fight it',
@@ -40,13 +101,99 @@ const tools: Tool[] = [
     category: 'thought-work',
   },
   {
+    id: 'thought-record',
+    name: 'Thought record',
+    description: 'Examine the evidence',
+    emoji: '📝',
+    duration: '5-10 min',
+    category: 'thought-work',
+  },
+  {
+    id: 'defusion',
+    name: 'Defusion',
+    description: '"I\'m having the thought that..."',
+    emoji: '🎈',
+    duration: '2 min',
+    category: 'thought-work',
+  },
+  {
+    id: 'leaves-on-stream',
+    name: 'Leaves on a stream',
+    description: 'Watch thoughts float by',
+    emoji: '🍃',
+    duration: '5 min',
+    category: 'thought-work',
+  },
+  {
+    id: 'check-the-facts',
+    name: 'Check the facts',
+    description: 'Is my emotion fitting the facts?',
+    emoji: '🔍',
+    duration: '5 min',
+    category: 'thought-work',
+  },
+  
+  // === EMOTION REGULATION ===
+  {
     id: 'opposite-action',
     name: 'Opposite action',
-    description: 'Do the next small thing',
+    description: 'Do what the emotion doesn\'t want',
     emoji: '↩️',
     duration: '5 min',
+    category: 'emotion',
+  },
+  {
+    id: 'emotion-wave',
+    name: 'Ride the wave',
+    description: 'Emotions peak then pass',
+    emoji: '🌊',
+    duration: '5-10 min',
+    category: 'emotion',
+  },
+  {
+    id: 'name-the-emotion',
+    name: 'Name the emotion',
+    description: 'Name it to tame it',
+    emoji: '🏷️',
+    duration: '2 min',
+    category: 'emotion',
+  },
+  {
+    id: 'please-skills',
+    name: 'PLEASE check',
+    description: 'Physical care for emotional health',
+    emoji: '💊',
+    duration: '2 min',
+    category: 'emotion',
+  },
+  
+  // === BEHAVIORAL ===
+  {
+    id: 'one-small-thing',
+    name: 'One small thing',
+    description: 'The tiniest action you can take',
+    emoji: '👣',
+    duration: '2-5 min',
     category: 'behavioral',
   },
+  {
+    id: 'dopamine-menu',
+    name: 'Dopamine menu',
+    description: 'Healthy things that feel good',
+    emoji: '🍽️',
+    duration: '3 min',
+    category: 'behavioral',
+  },
+  {
+    id: 'body-doubling',
+    name: 'Body doubling',
+    description: 'Presence helps you start',
+    emoji: '👥',
+    duration: 'varies',
+    category: 'behavioral',
+  },
+  
+  // === COMPASSION ===
   {
     id: 'self-compassion',
     name: 'Self-compassion break',
@@ -56,22 +203,85 @@ const tools: Tool[] = [
     category: 'compassion',
   },
   {
-    id: 'urge-surfing',
-    name: 'Surf the urge',
-    description: 'Watch it rise and fall',
-    emoji: '🌊',
+    id: 'inner-critic',
+    name: 'Inner critic work',
+    description: 'Recognize and respond to the harsh voice',
+    emoji: '🗣️',
+    duration: '5 min',
+    category: 'compassion',
+  },
+  {
+    id: 'loving-kindness',
+    name: 'Loving-kindness',
+    description: 'May I be safe, healthy, at ease',
+    emoji: '💗',
+    duration: '5 min',
+    category: 'compassion',
+  },
+  {
+    id: 'letter-to-self',
+    name: 'Letter to yourself',
+    description: 'What would a friend say?',
+    emoji: '✉️',
     duration: '5-10 min',
-    category: 'distress',
+    category: 'compassion',
+  },
+  
+  // === VALUES ===
+  {
+    id: 'values-check',
+    name: 'Values check',
+    description: 'What matters most right now?',
+    emoji: '🧭',
+    duration: '3 min',
+    category: 'values',
+  },
+  {
+    id: 'committed-action',
+    name: 'Committed action',
+    description: 'One values-aligned step',
+    emoji: '🎯',
+    duration: '5 min',
+    category: 'values',
+  },
+  
+  // === MINDFULNESS ===
+  {
+    id: 'three-minute-space',
+    name: '3-minute breathing space',
+    description: 'Awareness, gathering, expanding',
+    emoji: '🕐',
+    duration: '3 min',
+    category: 'mindfulness',
+  },
+  {
+    id: 'mindful-moment',
+    name: 'Mindful moment',
+    description: 'One thing, fully present',
+    emoji: '🧘',
+    duration: '1-2 min',
+    category: 'mindfulness',
+  },
+  {
+    id: 'anchor-breath',
+    name: 'Anchor breath',
+    description: 'Return to now, again and again',
+    emoji: '⚓',
+    duration: '2 min',
+    category: 'mindfulness',
   },
 ];
 
 const categories = [
   { id: 'all', name: 'All' },
   { id: 'grounding', name: 'Grounding' },
+  { id: 'distress', name: 'Distress' },
   { id: 'thought-work', name: 'Thoughts' },
+  { id: 'emotion', name: 'Emotions' },
   { id: 'behavioral', name: 'Action' },
   { id: 'compassion', name: 'Compassion' },
-  { id: 'distress', name: 'Distress' },
+  { id: 'values', name: 'Values' },
+  { id: 'mindfulness', name: 'Mindfulness' },
 ];
 
 const ToolCard = ({ tool }: { tool: Tool }) => (
