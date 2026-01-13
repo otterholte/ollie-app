@@ -19,7 +19,10 @@ const implementedTools = [
   'body-scan', 'cold-water', 'tipp', 'stop-skill', 'radical-acceptance',
   'defusion', 'leaves-on-stream', 'check-the-facts', 'opposite-action',
   'name-the-emotion', 'loving-kindness', 'inner-critic', 'values-check',
-  'three-minute-space', 'urge-surfing', 'thought-record'
+  'three-minute-space', 'urge-surfing', 'thought-record', 'pros-cons',
+  'emotion-wave', 'please-skills', 'one-small-thing', 'dopamine-menu',
+  'body-doubling', 'letter-to-self', 'committed-action', 'mindful-moment',
+  'anchor-breath'
 ];
 
 export default function ToolScreen() {
@@ -34,30 +37,42 @@ export default function ToolScreen() {
         </Pressable>
       </View>
 
-      {id === 'breathing' && <BreathingTool />}
-      {id === 'grounding' && <GroundingTool />}
-      {id === 'self-compassion' && <SelfCompassionTool />}
-      {id === 'thought-naming' && <ThoughtNamingTool />}
-      {id === 'crisis' && <CrisisResources />}
-      {id === 'body-scan' && <BodyScanTool />}
-      {id === 'cold-water' && <ColdWaterTool />}
-      {id === 'tipp' && <TIPPTool />}
-      {id === 'stop-skill' && <STOPTool />}
-      {id === 'radical-acceptance' && <RadicalAcceptanceTool />}
-      {id === 'defusion' && <DefusionTool />}
-      {id === 'leaves-on-stream' && <LeavesOnStreamTool />}
-      {id === 'check-the-facts' && <CheckTheFactsTool />}
-      {id === 'opposite-action' && <OppositeActionTool />}
-      {id === 'name-the-emotion' && <NameTheEmotionTool />}
-      {id === 'loving-kindness' && <LovingKindnessTool />}
-      {id === 'inner-critic' && <InnerCriticTool />}
-      {id === 'values-check' && <ValuesCheckTool />}
-      {id === 'three-minute-space' && <ThreeMinuteSpaceTool />}
-      {id === 'urge-surfing' && <UrgeSurfingTool />}
-      {id === 'thought-record' && <ThoughtRecordTool />}
-      {!implementedTools.includes(id || '') && (
-        <ComingSoon toolId={id} />
-      )}
+      <ScrollView style={styles.scrollContent} contentContainerStyle={styles.scrollContainer}>
+        {id === 'breathing' && <BreathingTool />}
+        {id === 'grounding' && <GroundingTool />}
+        {id === 'self-compassion' && <SelfCompassionTool />}
+        {id === 'thought-naming' && <ThoughtNamingTool />}
+        {id === 'crisis' && <CrisisResources />}
+        {id === 'body-scan' && <BodyScanTool />}
+        {id === 'cold-water' && <ColdWaterTool />}
+        {id === 'tipp' && <TIPPTool />}
+        {id === 'stop-skill' && <STOPTool />}
+        {id === 'radical-acceptance' && <RadicalAcceptanceTool />}
+        {id === 'defusion' && <DefusionTool />}
+        {id === 'leaves-on-stream' && <LeavesOnStreamTool />}
+        {id === 'check-the-facts' && <CheckTheFactsTool />}
+        {id === 'opposite-action' && <OppositeActionTool />}
+        {id === 'name-the-emotion' && <NameTheEmotionTool />}
+        {id === 'loving-kindness' && <LovingKindnessTool />}
+        {id === 'inner-critic' && <InnerCriticTool />}
+        {id === 'values-check' && <ValuesCheckTool />}
+        {id === 'three-minute-space' && <ThreeMinuteSpaceTool />}
+        {id === 'urge-surfing' && <UrgeSurfingTool />}
+        {id === 'thought-record' && <ThoughtRecordTool />}
+        {id === 'pros-cons' && <ProsConsTool />}
+        {id === 'emotion-wave' && <EmotionWaveTool />}
+        {id === 'please-skills' && <PLEASETool />}
+        {id === 'one-small-thing' && <OneSmallThingTool />}
+        {id === 'dopamine-menu' && <DopamineMenuTool />}
+        {id === 'body-doubling' && <BodyDoublingTool />}
+        {id === 'letter-to-self' && <LetterToSelfTool />}
+        {id === 'committed-action' && <CommittedActionTool />}
+        {id === 'mindful-moment' && <MindfulMomentTool />}
+        {id === 'anchor-breath' && <AnchorBreathTool />}
+        {!implementedTools.includes(id || '') && (
+          <ComingSoon toolId={id} />
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -1360,6 +1375,679 @@ const ThoughtRecordTool = () => {
   );
 };
 
+// Pros and Cons Tool
+const ProsConsTool = () => {
+  const [step, setStep] = useState(0);
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>⚖️</Text>
+        <Text style={styles.toolTitle}>Pros & Cons</Text>
+        <Text style={styles.toolDescription}>
+          When you have an urge, this tool helps you{'\n'}
+          think through the consequences before acting.{'\n\n'}
+          Not to talk yourself out of it—{'\n'}
+          but to make a wise choice.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>Start</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  const questions = [
+    { title: 'Acting on the urge', subtitle: 'Pros', hint: 'What feels good about giving in? Instant relief? Feeling in control?' },
+    { title: 'Acting on the urge', subtitle: 'Cons', hint: 'What are the costs? How will you feel after? What consequences?' },
+    { title: 'Resisting the urge', subtitle: 'Pros', hint: 'What do you gain by not acting? Self-trust? Avoiding harm?' },
+    { title: 'Resisting the urge', subtitle: 'Cons', hint: 'What\'s hard about resisting? Discomfort? Uncertainty?' },
+  ];
+
+  const current = questions[step - 1];
+  const isComplete = step > questions.length;
+
+  if (isComplete) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>🧠</Text>
+        <Text style={styles.toolTitle}>You thought it through.</Text>
+        <Text style={styles.toolDescription}>
+          You didn\'t just react.{'\n'}
+          You considered the full picture.{'\n\n'}
+          Whatever you choose now,{'\n'}
+          you're choosing with awareness.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => router.back()}>
+          <Text style={styles.startButtonText}>Done</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.stepIndicator}>{current.title}</Text>
+      <Text style={styles.compassionTitle}>{current.subtitle}</Text>
+      <Text style={styles.toolDescription}>{current.hint}</Text>
+      <Text style={styles.thoughtHint}>Think of at least 2-3 things.</Text>
+      <Pressable style={styles.startButton} onPress={() => setStep(s => s + 1)}>
+        <Text style={styles.startButtonText}>Next</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// Emotion Wave / Ride the Wave
+const EmotionWaveTool = () => {
+  const [step, setStep] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    if (step !== 2) return;
+    
+    const interval = setInterval(() => {
+      setSeconds(s => s + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [step]);
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>🌊</Text>
+        <Text style={styles.toolTitle}>Ride the Wave</Text>
+        <Text style={styles.toolDescription}>
+          Emotions are like waves.{'\n'}
+          They build, they peak, they pass.{'\n\n'}
+          No wave lasts forever.{'\n'}
+          Your job is to ride it out.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>Begin</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (step === 1) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.compassionTitle}>Notice the wave</Text>
+        <Text style={styles.toolDescription}>
+          What emotion is here?{'\n'}
+          Where do you feel it in your body?{'\n\n'}
+          Rate its intensity: 1-10{'\n\n'}
+          Don't try to change it.{'\n'}
+          Just notice.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(2)}>
+          <Text style={styles.startButtonText}>I'm noticing</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (step === 2) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>🌊</Text>
+        <Text style={styles.compassionTitle}>Ride it out</Text>
+        <Text style={styles.toolDescription}>
+          Breathe. Don't fight.{'\n'}
+          Let it be as intense as it is.{'\n\n'}
+          It will peak and pass.{'\n'}
+          You are not the wave.{'\n'}
+          You are the ocean.
+        </Text>
+        <Text style={styles.cycleCount}>{Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</Text>
+        <Pressable style={[styles.startButton, { marginTop: spacing[6] }]} onPress={() => setStep(3)}>
+          <Text style={styles.startButtonText}>The wave is passing</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.toolEmoji}>🏄</Text>
+      <Text style={styles.toolTitle}>You rode it out.</Text>
+      <Text style={styles.toolDescription}>
+        The wave came. You didn't drown.{'\n'}
+        You're still here.{'\n\n'}
+        What's the intensity now?{'\n'}
+        Probably different than before.
+      </Text>
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>Done</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// PLEASE Skills
+const PLEASETool = () => {
+  const [step, setStep] = useState(0);
+
+  const pleaseItems = [
+    { letter: 'PL', title: 'Physical iLlness', question: 'Are you taking care of any health issues?', hint: 'Pain, sickness, and physical discomfort affect mood. Have you taken your meds? Seen a doctor if needed?' },
+    { letter: 'E', title: 'Eating', question: 'Have you eaten balanced meals today?', hint: 'Not too much, not too little. Blood sugar crashes affect emotions. When did you last eat something nourishing?' },
+    { letter: 'A', title: 'Avoid mood-altering substances', question: 'What substances have you used?', hint: 'Alcohol, drugs, too much caffeine—they change your emotional baseline. Notice the connection.' },
+    { letter: 'S', title: 'Sleep', question: 'How\'s your sleep been?', hint: 'Too little or too much both impact mood. What\'s one thing you could do for better sleep hygiene?' },
+    { letter: 'E', title: 'Exercise', question: 'Have you moved your body?', hint: 'Even a short walk counts. Movement changes brain chemistry. What\'s the smallest movement you could do?' },
+  ];
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>💊</Text>
+        <Text style={styles.toolTitle}>PLEASE Skills</Text>
+        <Text style={styles.toolDescription}>
+          Emotional vulnerability increases when{'\n'}
+          basic physical needs aren't met.{'\n\n'}
+          Let's check in on the basics.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>Check in</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  const current = pleaseItems[step - 1];
+  const isComplete = step > pleaseItems.length;
+
+  if (isComplete) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>✨</Text>
+        <Text style={styles.toolTitle}>Basics checked.</Text>
+        <Text style={styles.toolDescription}>
+          Physical care is emotional care.{'\n\n'}
+          Which one area could you{'\n'}
+          attend to today?
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => router.back()}>
+          <Text style={styles.startButtonText}>Done</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.tippLetter}>{current.letter}</Text>
+      <Text style={styles.compassionTitle}>{current.title}</Text>
+      <Text style={styles.toolDescription}>{current.question}</Text>
+      <View style={styles.promptBox}>
+        <Text style={styles.promptText}>{current.hint}</Text>
+      </View>
+      <Pressable style={styles.startButton} onPress={() => setStep(s => s + 1)}>
+        <Text style={styles.startButtonText}>Next</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// One Small Thing
+const OneSmallThingTool = () => {
+  const [step, setStep] = useState(0);
+
+  const suggestions = [
+    'Drink a glass of water',
+    'Stand up and stretch',
+    'Open a window',
+    'Send one text to someone',
+    'Put one thing away',
+    'Take 3 deep breaths',
+    'Wash your face',
+    'Step outside for 30 seconds',
+  ];
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>👣</Text>
+        <Text style={styles.toolTitle}>One Small Thing</Text>
+        <Text style={styles.toolDescription}>
+          When everything feels like too much,{'\n'}
+          don't try to do everything.{'\n\n'}
+          Just one tiny thing.{'\n'}
+          The smallest version possible.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>Show me options</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (step === 1) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.compassionTitle}>Pick one. Any one.</Text>
+        <View style={styles.suggestionList}>
+          {suggestions.map((s, i) => (
+            <Pressable key={i} style={styles.suggestionItem} onPress={() => setStep(2)}>
+              <Text style={styles.suggestionText}>{s}</Text>
+            </Pressable>
+          ))}
+        </View>
+        <Text style={styles.thoughtHint}>Or think of your own tiny action.</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.toolEmoji}>✨</Text>
+      <Text style={styles.toolTitle}>That's it.</Text>
+      <Text style={styles.toolDescription}>
+        One small thing, done.{'\n\n'}
+        You don't have to do more.{'\n'}
+        But if you want to, you can pick another.{'\n\n'}
+        Progress isn't always big.
+      </Text>
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>Done</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// Dopamine Menu
+const DopamineMenuTool = () => {
+  const [step, setStep] = useState(0);
+
+  const menuItems = {
+    appetizers: ['Stretch for 2 minutes', 'Look out a window', 'Drink something warm', 'Listen to one song'],
+    mains: ['Take a walk', 'Call a friend', 'Work on a hobby for 15 min', 'Take a shower'],
+    desserts: ['Watch a comfort show', 'Play a game', 'Create something', 'Be in nature'],
+    specials: ['Plan something to look forward to', 'Help someone', 'Learn something new', 'Move your body'],
+  };
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>🍽️</Text>
+        <Text style={styles.toolTitle}>Dopamine Menu</Text>
+        <Text style={styles.toolDescription}>
+          When nothing sounds good,{'\n'}
+          it helps to have a menu.{'\n\n'}
+          These are healthy things that can{'\n'}
+          give your brain a little boost.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>See the menu</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.compassionTitle}>Your Dopamine Menu</Text>
+      
+      <View style={styles.menuSection}>
+        <Text style={styles.menuTitle}>🥗 Appetizers (quick hits)</Text>
+        <Text style={styles.menuItems}>{menuItems.appetizers.join(' • ')}</Text>
+      </View>
+      
+      <View style={styles.menuSection}>
+        <Text style={styles.menuTitle}>🍝 Mains (more satisfying)</Text>
+        <Text style={styles.menuItems}>{menuItems.mains.join(' • ')}</Text>
+      </View>
+      
+      <View style={styles.menuSection}>
+        <Text style={styles.menuTitle}>🍰 Desserts (treats)</Text>
+        <Text style={styles.menuItems}>{menuItems.desserts.join(' • ')}</Text>
+      </View>
+      
+      <View style={styles.menuSection}>
+        <Text style={styles.menuTitle}>⭐ Specials (extra boost)</Text>
+        <Text style={styles.menuItems}>{menuItems.specials.join(' • ')}</Text>
+      </View>
+
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>I picked something</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// Body Doubling
+const BodyDoublingTool = () => {
+  const [step, setStep] = useState(0);
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>👥</Text>
+        <Text style={styles.toolTitle}>Body Doubling</Text>
+        <Text style={styles.toolDescription}>
+          Sometimes we need another person present{'\n'}
+          to help us get started on tasks.{'\n\n'}
+          They don't have to help.{'\n'}
+          Just being there is enough.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>How to do it</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.compassionTitle}>Options for body doubling:</Text>
+      
+      <View style={styles.optionsList}>
+        <View style={styles.optionCard}>
+          <Text style={styles.optionTitle}>In person</Text>
+          <Text style={styles.optionText}>Ask a friend or family member to just be in the room while you work. They can do their own thing.</Text>
+        </View>
+        
+        <View style={styles.optionCard}>
+          <Text style={styles.optionTitle}>Video call</Text>
+          <Text style={styles.optionText}>Start a call with a friend where you both work quietly. Camera on, mics optional.</Text>
+        </View>
+        
+        <View style={styles.optionCard}>
+          <Text style={styles.optionTitle}>Virtual body doubling</Text>
+          <Text style={styles.optionText}>There are free online sessions where strangers work together silently. Search "virtual body doubling" or "Focusmate".</Text>
+        </View>
+        
+        <View style={styles.optionCard}>
+          <Text style={styles.optionTitle}>Café or library</Text>
+          <Text style={styles.optionText}>The presence of other people working can help you work too.</Text>
+        </View>
+      </View>
+
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>Got it</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// Letter to Self
+const LetterToSelfTool = () => {
+  const [step, setStep] = useState(0);
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>✉️</Text>
+        <Text style={styles.toolTitle}>Letter to Yourself</Text>
+        <Text style={styles.toolDescription}>
+          Imagine a close friend came to you{'\n'}
+          feeling exactly what you're feeling.{'\n\n'}
+          What would you say to them?{'\n'}
+          Now say it to yourself.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>Begin</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (step === 1) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.compassionTitle}>First, acknowledge the pain.</Text>
+        <Text style={styles.toolDescription}>
+          What are you struggling with right now?{'\n'}
+          Name it honestly.{'\n\n'}
+          "You're going through..."
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(2)}>
+          <Text style={styles.startButtonText}>Continue</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (step === 2) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.compassionTitle}>Now, validate it.</Text>
+        <Text style={styles.toolDescription}>
+          What would you want your friend to hear?{'\n\n'}
+          "It makes sense that you feel..."{'\n'}
+          "Anyone would struggle with..."{'\n'}
+          "This is really hard because..."
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(3)}>
+          <Text style={styles.startButtonText}>Continue</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (step === 3) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.compassionTitle}>Finally, offer support.</Text>
+        <Text style={styles.toolDescription}>
+          What encouragement would you give?{'\n\n'}
+          Not toxic positivity—{'\n'}
+          just genuine care.{'\n\n'}
+          "I'm here with you."{'\n'}
+          "You don't have to fix this alone."{'\n'}
+          "One moment at a time."
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(4)}>
+          <Text style={styles.startButtonText}>Continue</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.toolEmoji}>💌</Text>
+      <Text style={styles.toolTitle}>You wrote to yourself.</Text>
+      <Text style={styles.toolDescription}>
+        These words are for you.{'\n'}
+        You can come back to them anytime.{'\n\n'}
+        You deserve the same kindness{'\n'}
+        you'd give a friend.
+      </Text>
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>Done</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// Committed Action
+const CommittedActionTool = () => {
+  const [step, setStep] = useState(0);
+
+  const valueAreas = [
+    { name: 'Connection', examples: 'Text someone, make eye contact, ask how someone is' },
+    { name: 'Growth', examples: 'Learn one thing, read a page, try something new' },
+    { name: 'Health', examples: 'Drink water, take a walk, eat a vegetable' },
+    { name: 'Meaning', examples: 'Help someone, create something, contribute' },
+    { name: 'Joy', examples: 'Do something fun, laugh, play' },
+  ];
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>🎯</Text>
+        <Text style={styles.toolTitle}>Committed Action</Text>
+        <Text style={styles.toolDescription}>
+          This isn't about feeling better first.{'\n'}
+          It's about acting on what matters,{'\n'}
+          even when it's hard.{'\n\n'}
+          One tiny step toward your values.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>Pick a value</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (step === 1) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.compassionTitle}>What matters to you today?</Text>
+        <View style={styles.valuesList}>
+          {valueAreas.map((v, i) => (
+            <Pressable key={i} style={styles.valueItem} onPress={() => setStep(2)}>
+              <Text style={styles.valueText}>{v.name}</Text>
+              <Text style={styles.valueExamples}>{v.examples}</Text>
+            </Pressable>
+          ))}
+        </View>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.compassionTitle}>Now commit to one action.</Text>
+      <Text style={styles.toolDescription}>
+        What's the smallest possible step{'\n'}
+        you could take toward this value?{'\n\n'}
+        Not a big goal.{'\n'}
+        Just one tiny action.{'\n'}
+        Today. Or even right now.
+      </Text>
+      <View style={styles.promptBox}>
+        <Text style={styles.promptText}>
+          "I will ____{'\n'}
+          in the next ____."
+        </Text>
+      </View>
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>I commit</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// Mindful Moment
+const MindfulMomentTool = () => {
+  const [step, setStep] = useState(0);
+
+  const activities = [
+    { name: 'Mindful sip', instruction: 'Take a drink. Feel the temperature. Notice the taste. Follow it down.' },
+    { name: 'Mindful breath', instruction: 'One full breath. Feel the air enter. Feel it leave. That\'s it.' },
+    { name: 'Mindful look', instruction: 'Look at one object. Notice colors, textures, shadows. See it fresh.' },
+    { name: 'Mindful listen', instruction: 'Close your eyes. What sounds are here? Near and far.' },
+    { name: 'Mindful touch', instruction: 'Feel what your hands are touching. Temperature, texture, weight.' },
+  ];
+
+  if (step === 0) {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>🧘</Text>
+        <Text style={styles.toolTitle}>Mindful Moment</Text>
+        <Text style={styles.toolDescription}>
+          You don't need 20 minutes.{'\n'}
+          You don't need silence.{'\n\n'}
+          One moment of full presence{'\n'}
+          is enough.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setStep(1)}>
+          <Text style={styles.startButtonText}>Give me one</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.compassionTitle}>{randomActivity.name}</Text>
+      <Text style={styles.toolDescription}>{randomActivity.instruction}</Text>
+      <View style={styles.promptBox}>
+        <Text style={styles.promptText}>
+          Take your time.{'\n'}
+          There's no rush.
+        </Text>
+      </View>
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>Done</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+// Anchor Breath
+const AnchorBreathTool = () => {
+  const [phase, setPhase] = useState<'intro' | 'practice' | 'done'>('intro');
+  const [breaths, setBreaths] = useState(0);
+
+  if (phase === 'intro') {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>⚓</Text>
+        <Text style={styles.toolTitle}>Anchor Breath</Text>
+        <Text style={styles.toolDescription}>
+          The breath is always here.{'\n'}
+          Always happening.{'\n\n'}
+          It's your anchor to now.{'\n'}
+          When you drift, return to it.
+        </Text>
+        <Pressable style={styles.startButton} onPress={() => setPhase('practice')}>
+          <Text style={styles.startButtonText}>Begin</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (phase === 'practice') {
+    return (
+      <View style={styles.toolContent}>
+        <Text style={styles.toolEmoji}>⚓</Text>
+        <Text style={styles.compassionTitle}>Feel the breath.</Text>
+        <Text style={styles.toolDescription}>
+          In your nose, your chest, your belly.{'\n\n'}
+          When your mind wanders—and it will—{'\n'}
+          just come back.{'\n\n'}
+          No judgment. Just return.
+        </Text>
+        <Text style={styles.breathCounter}>{breaths} breaths</Text>
+        <Pressable 
+          style={styles.breathButton} 
+          onPress={() => setBreaths(b => b + 1)}
+        >
+          <Text style={styles.breathButtonText}>Tap for each breath</Text>
+        </Pressable>
+        <Pressable 
+          style={[styles.startButton, { marginTop: spacing[4] }]} 
+          onPress={() => setPhase('done')}
+        >
+          <Text style={styles.startButtonText}>Finish</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.toolContent}>
+      <Text style={styles.toolEmoji}>⚓</Text>
+      <Text style={styles.toolTitle}>{breaths} breaths. Well done.</Text>
+      <Text style={styles.toolDescription}>
+        You practiced returning.{'\n'}
+        That's the whole skill.{'\n\n'}
+        The anchor is always there{'\n'}
+        whenever you need it.
+      </Text>
+      <Pressable style={styles.startButton} onPress={() => router.back()}>
+        <Text style={styles.startButtonText}>Done</Text>
+      </Pressable>
+    </View>
+  );
+};
+
 // Crisis Resources
 const CrisisResources = () => (
   <View style={styles.toolContent}>
@@ -1720,6 +2408,75 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     marginTop: spacing[4],
     marginBottom: spacing[6],
+  },
+  
+  // Scroll content
+  scrollContent: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+  },
+
+  // Suggestion list
+  suggestionList: {
+    width: '100%',
+    gap: spacing[2],
+    marginBottom: spacing[4],
+  },
+  suggestionItem: {
+    backgroundColor: colors.background.secondary,
+    padding: spacing[4],
+    borderRadius: borderRadius.md,
+  },
+  suggestionText: {
+    fontSize: typography.sizes.base,
+    color: colors.text.primary,
+  },
+
+  // Menu styles
+  menuSection: {
+    width: '100%',
+    marginBottom: spacing[4],
+  },
+  menuTitle: {
+    fontSize: typography.sizes.sm,
+    fontWeight: typography.weights.semibold,
+    color: colors.primary[600],
+    marginBottom: spacing[1],
+  },
+  menuItems: {
+    fontSize: typography.sizes.sm,
+    color: colors.text.secondary,
+    lineHeight: typography.sizes.sm * typography.lineHeights.relaxed,
+  },
+
+  // Value examples
+  valueExamples: {
+    fontSize: typography.sizes.sm,
+    color: colors.text.tertiary,
+    marginTop: spacing[1],
+  },
+
+  // Breath counter
+  breathCounter: {
+    fontSize: typography.sizes['2xl'],
+    fontWeight: typography.weights.semibold,
+    color: colors.primary[600],
+    marginBottom: spacing[4],
+  },
+  breathButton: {
+    backgroundColor: colors.primary[100],
+    paddingHorizontal: spacing[6],
+    paddingVertical: spacing[4],
+    borderRadius: borderRadius.full,
+    borderWidth: 2,
+    borderColor: colors.primary[300],
+  },
+  breathButtonText: {
+    color: colors.primary[700],
+    fontSize: typography.sizes.base,
+    fontWeight: typography.weights.medium,
   },
 });
 
